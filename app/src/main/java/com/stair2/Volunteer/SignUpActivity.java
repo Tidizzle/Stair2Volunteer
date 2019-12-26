@@ -2,8 +2,10 @@ package com.stair2.Volunteer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -74,6 +76,12 @@ public class SignUpActivity extends AppCompatActivity implements AsyncBooleanRes
     @Override
     public void processFinish(User u) {
         //TODO: add logic for storing user and moving to main activity
+
+        AppState.LoggedInUser = u; //set the appstate user for use other places
+
+        Intent openHome = new Intent(this, HomeActivity.class); //create the intent to open home
+        startActivity(openHome); //open home activity
+
         Toast.makeText(this, "Welcome, " + u.firstName + "!", Toast.LENGTH_SHORT).show();
     }
 }

@@ -10,10 +10,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 
-public class CheckLoginTask extends AsyncTask<String, Integer, Boolean>
+public class CheckLoginTask extends AsyncTask<String, Integer, User>
 {
 
-    public AsyncBooleanResponse delegate = null;
+    public AsyncUserResponse delegate = null;
 
     private final String tableName = "users";
     private final String userField = "userName";
@@ -22,7 +22,7 @@ public class CheckLoginTask extends AsyncTask<String, Integer, Boolean>
     //NOTE:: TASKS THAT QUERY THE DATABASE FOR A RESULTSET HAVE TO BE DONE MANUALLY EVERY TIME
 
     @Override
-    protected Boolean doInBackground(String... strings)
+    protected User doInBackground(String... strings)
     {
         String uname = strings[0];
         String passhash = strings[1];
@@ -31,7 +31,7 @@ public class CheckLoginTask extends AsyncTask<String, Integer, Boolean>
         StrictMode.ThreadPolicy pol = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(pol);
 
-        boolean result = false;
+        User result = null;
         Connection c = null;
 
         try
@@ -48,12 +48,26 @@ public class CheckLoginTask extends AsyncTask<String, Integer, Boolean>
             Statement stmt = c.createStatement();
             ResultSet results = stmt.executeQuery(sqlquery);
 
-            //return true if username isnt taken/false if taken
+            //returns true if login exists, false if it doesnt
             results.next();
             if(results.getInt(1) == 1)
-                result = true;
+            {
+                String userQuery = String.format("SELECT userId, firstName, lastName, userName FROM %1$s WHERE %2$s = '%3$s' AND %4$s = '%5$s';", tableName, userField, uname, passField, passhash);
+
+                Statement userStmt = c.createStatement();
+                ResultSet u = userStmt.executeQuery(userQuery);
+
+                u.next();
+
+                result = new User(u.getInt("userId"), u.getString("firstName"), u.getString("lastName"), u.getString("userName"));
+
+                u.close();
+                userStmt.close();
+            }
             else
-                result = false;
+                result = null;
+
+
 
             //make sure to close all the connections
             results.close();
@@ -69,9 +83,9 @@ public class CheckLoginTask extends AsyncTask<String, Integer, Boolean>
     }
 
     @Override
-    protected void onPostExecute(Boolean aBoolean)
+    protected void onPostExecute(User user)
     {
         //send result boolean to the delegate
-        delegate.processFinish(aBoolean);
+        delegate.processFinish(user);
     }
 }
