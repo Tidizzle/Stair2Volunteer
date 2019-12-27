@@ -1,5 +1,9 @@
 package com.stair2.Volunteer.DatabaseData;
 
+/**
+ * Signup contains relational information connecting an event and a user together
+ * @author Zach Taylor
+ */
 public class Signup
 {
     public int userId;

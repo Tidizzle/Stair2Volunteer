@@ -2,6 +2,10 @@ package com.stair2.Volunteer.DatabaseData;
 
 import java.util.UUID;
 
+/**
+ * User holds pertinent user information including a guidGeneration method
+ * @author Zach Taylor
+ */
 public class User
 {
     public String firstName;

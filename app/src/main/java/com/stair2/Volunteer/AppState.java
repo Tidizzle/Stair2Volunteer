@@ -6,6 +6,10 @@ import com.stair2.Volunteer.Async.GetDatabaseStateTask;
 import com.stair2.Volunteer.Callback.AsyncDatabaseStateResponse;
 import com.stair2.Volunteer.DatabaseData.*;
 
+/**
+ * Static class stores the database state for the app
+ * @author Zach Taylor
+ */
 public class AppState implements AsyncDatabaseStateResponse
 {
 

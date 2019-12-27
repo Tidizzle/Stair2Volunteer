@@ -7,6 +7,10 @@ import com.stair2.Volunteer.Callback.AsyncUserResponse;
 import com.stair2.Volunteer.DatabaseConnect;
 import com.stair2.Volunteer.DatabaseData.User;
 
+/**
+ * Task to create a new user and return the user object
+ * @author Zach Taylor
+ */
 public class CreateUserTask extends AsyncTask<String, Void, User>
 {
     public AsyncUserResponse delegate = null;

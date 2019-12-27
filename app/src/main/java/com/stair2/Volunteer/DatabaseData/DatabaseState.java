@@ -2,6 +2,10 @@ package com.stair2.Volunteer.DatabaseData;
 
 import java.util.ArrayList;
 
+/**
+ * Database state is the object responsible for holding the databases data at the point in time it was accessed
+ * @author Zach Taylor
+ */
 public class DatabaseState
 {
     public ArrayList<User> users;

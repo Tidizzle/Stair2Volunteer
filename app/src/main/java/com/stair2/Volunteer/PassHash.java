@@ -6,6 +6,10 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Static class allows for passwords to be hashed
+ * @author Zach Taylor
+ */
 final class PassHash {
 
     /**

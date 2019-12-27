@@ -12,6 +12,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * Task to check if a username is taken for signup purposes
+ * @author Zach Taylor
+ */
 public class CheckSignUpTask extends AsyncTask<String, Void, Boolean>
 {
     public AsyncBooleanResponse delegate = null;

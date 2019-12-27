@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Static class allows for connection to the remote database server
+ * @author Zach Taylor
+ */
 public class DatabaseConnect
 {
     private static final String userName = "applicationUser";

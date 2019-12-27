@@ -20,6 +20,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * Task to download the database information and store it in a databasestate object
+ * @author Zach Taylor
+ */
 public class GetDatabaseStateTask extends AsyncTask<Void, Void, DatabaseState>
 {
     public AsyncDatabaseStateResponse delegate = null;

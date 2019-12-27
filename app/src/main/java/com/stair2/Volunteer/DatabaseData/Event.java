@@ -2,6 +2,10 @@ package com.stair2.Volunteer.DatabaseData;
 
 import java.util.Date;
 
+/**
+ * Object to hold pertinent event information
+ * @author Zach Taylor
+ */
 public class Event
 {
     public int eventId;

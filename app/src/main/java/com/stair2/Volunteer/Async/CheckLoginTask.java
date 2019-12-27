@@ -13,7 +13,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
+/**
+ * Task checking if a login is valid, and returning the user that logs in
+ * @author Zach Taylor
+ */
 public class CheckLoginTask extends AsyncTask<String, Integer, User>
 {
 

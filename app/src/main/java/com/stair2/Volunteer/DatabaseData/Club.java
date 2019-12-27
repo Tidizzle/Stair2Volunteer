@@ -1,5 +1,9 @@
 package com.stair2.Volunteer.DatabaseData;
 
+/**
+ * Club holds the information pertinent to each club instance
+ * @author Zach Taylor
+ */
 public class Club
 {
     public int clubId;
