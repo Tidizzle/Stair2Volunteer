@@ -1,23 +1,17 @@
 package com.stair2.Volunteer;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
+import com.stair2.Volunteer.Async.CheckLoginTask;
+import com.stair2.Volunteer.Callback.AsyncUserResponse;
+import com.stair2.Volunteer.DatabaseData.User;
 
 public class LoginActivity extends AppCompatActivity implements AsyncUserResponse {
 
@@ -31,6 +25,9 @@ public class LoginActivity extends AppCompatActivity implements AsyncUserRespons
 
         //set the login task's delegate to this class, to allow callback method
         checkLogin.delegate = this;
+
+        AppState state = new AppState();
+        state.LoadAppState();
     }
 
     public void submitLogin(View view)
@@ -68,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncUserRespons
 
         if(output != null)
         {
+
             AppState.LoggedInUser = output; //set the appstate user for use other places
 
             ((Button)findViewById(R.id.login_submit)).setEnabled(true); //turn on the submit again

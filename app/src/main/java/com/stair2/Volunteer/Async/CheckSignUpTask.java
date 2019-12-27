@@ -1,8 +1,11 @@
-package com.stair2.Volunteer;
+package com.stair2.Volunteer.Async;
 
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
+
+import com.stair2.Volunteer.Callback.AsyncBooleanResponse;
+import com.stair2.Volunteer.DatabaseConnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

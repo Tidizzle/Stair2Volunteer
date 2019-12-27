@@ -1,4 +1,4 @@
-package com.stair2.Volunteer;
+package com.stair2.Volunteer.DatabaseData;
 
 import java.util.UUID;
 

@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SignUpActivity extends AppCompatActivity implements AsyncBooleanResponse, AsyncUserResponse{
+import com.stair2.Volunteer.Async.CheckSignUpTask;
+import com.stair2.Volunteer.Async.CreateUserTask;
+import com.stair2.Volunteer.Callback.AsyncBooleanResponse;
+import com.stair2.Volunteer.Callback.AsyncUserResponse;
+import com.stair2.Volunteer.DatabaseData.User;
+
+public class SignUpActivity extends AppCompatActivity implements AsyncBooleanResponse, AsyncUserResponse {
 
     CheckSignUpTask signupCheckTask = new CheckSignUpTask();
     CreateUserTask createUserTask = new CreateUserTask();
