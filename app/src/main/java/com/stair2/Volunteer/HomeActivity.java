@@ -3,6 +3,7 @@ package com.stair2.Volunteer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +24,16 @@ public class HomeActivity extends AppCompatActivity {
 
         ((TextView)findViewById(R.id.home_CompleteEventsText)).setText(AppState.completesignups + "  Completed");
         ((TextView)findViewById(R.id.home_UpcomingEventsText)).setText(AppState.incompletesignups + "  Upcoming");
+
+    }
+
+    public void viewAllClubs(View view)
+    {
+
+    }
+
+    public void viewAllSignups(View view)
+    {
 
     }
 
