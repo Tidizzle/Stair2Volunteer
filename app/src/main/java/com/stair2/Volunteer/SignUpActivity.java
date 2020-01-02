@@ -80,7 +80,6 @@ public class SignUpActivity extends AppCompatActivity implements AsyncBooleanRes
     //Callback for create user check
     @Override
     public void processFinish(User u) {
-        //TODO: add logic for storing user and moving to main activity
 
         AppState.LoggedInUser = u; //set the appstate user for use other places
 

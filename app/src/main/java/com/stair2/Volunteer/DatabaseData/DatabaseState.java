@@ -12,6 +12,7 @@ public class DatabaseState
     public ArrayList<Club> clubs;
     public ArrayList<Event> events;
     public ArrayList<Signup> signups;
+    public ArrayList<Membership> memberships;
 
     public DatabaseState()
     {
@@ -19,6 +20,7 @@ public class DatabaseState
         clubs = new ArrayList<Club>();
         events = new ArrayList<Event>();
         signups = new ArrayList<Signup>();
+        memberships = new ArrayList<Membership>();
     }
 
     public int getIncompleteSignups(int userId)

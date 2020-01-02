@@ -2,6 +2,7 @@ package com.stair2.Volunteer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -29,7 +30,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void viewAllClubs(View view)
     {
-
+        Intent clubIntent = new Intent(this, ClubActivity.class);
+        startActivity(clubIntent);
     }
 
     public void viewAllSignups(View view)

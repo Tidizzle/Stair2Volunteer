@@ -36,7 +36,7 @@
             android:id="@+id/club_memberClubContainer"
             >
 
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -104,77 +104,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-
-                card_view:cardBackgroundColor="#fff"
-                card_view:cardCornerRadius="10dp"
-                card_view:cardElevation="5dp"
-                card_view:cardPreventCornerOverlap="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:text="Ryan's Test Club"
-                        android:textSize="15sp"
-                        android:gravity="bottom"
-                        android:textStyle="bold"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginTop="2dp"
-                        />
-
-                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="fill_parent"
-                        android:layout_height="10dp"
-                        android:paddingLeft="0dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="0dp"
-                        android:paddingBottom="2dp"
-                        android:scaleType="fitXY"
-                        android:src="@android:drawable/divider_horizontal_bright"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus vulputate neque, rhoncus rutrum neque luctus fringilla. Ut posuere, risus sit amet elementum vulputate."
-                        />
-
-                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="fill_parent"
-                        android:layout_height="10dp"
-                        android:paddingLeft="0dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="0dp"
-                        android:paddingBottom="2dp"
-                        android:scaleType="fitXY"
-                        android:src="@android:drawable/divider_horizontal_bright"/>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:text="View"
-                        android:textSize="15sp"
-                        android:textAllCaps="false"
-                        android:background="#fff"
-                        android:textStyle="normal"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
 
         </LinearLayout>
 
