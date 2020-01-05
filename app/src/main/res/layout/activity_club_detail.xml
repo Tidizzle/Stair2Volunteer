@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClubDetailActivity"
+    android:orientation="vertical"
+    android:background="#efefef">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="5dp"
+        card_view:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/clubDetail_ClubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Shannons Test Club"
+                android:textSize="20sp" />
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="5dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="2dp"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/divider_horizontal_bright"/>
+
+            <TextView
+                android:id="@+id/clubDetail_Description"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_marginLeft="5dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/clubDetail_ReqHours"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView" />
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="5dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="2dp"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/divider_horizontal_bright"/>
+
+            <TextView
+                android:id="@+id/clubDetail_Website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:text="TextView" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/clubDetail_Members"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="showMemebers"
+        android:text="Members"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/clubDetail_SponsoredEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="showSponsored"
+        android:text="Sponsored Events"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/clubDetail_LeaveClub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="leaveClub"
+        android:text="Leave Club"
+        android:textAllCaps="false" />
+
+</LinearLayout>

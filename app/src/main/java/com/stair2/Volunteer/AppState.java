@@ -25,8 +25,6 @@ public class AppState implements AsyncDatabaseStateResponse
     {
         completesignups = state.getCompleteSignups(LoggedInUser.userId);
         incompletesignups = state.getIncompleteSignups(LoggedInUser.userId);
-
-
     }
 
 
@@ -60,6 +58,29 @@ public class AppState implements AsyncDatabaseStateResponse
         }
 
         return usersClubs;
+    }
+
+    public static ArrayList<Club> getClubsNotJoined(int userid)
+    {
+        //collect all of the users memberships
+        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
+        for(int i = 0; i < state.memberships.size(); i++)
+        {
+            if(state.memberships.get(i).userId == userid)
+                usersMemberships.add(state.memberships.get(i));
+        }
+
+        //collect all of the clubs that match the pattern
+        ArrayList<Club> inverseUsersClubs = new ArrayList<>();
+        for(int i = 0; i < state.clubs.size();i++)
+        {
+            Membership pattern = new Membership(userid,state.clubs.get(i).clubId);
+
+            if(!usersMemberships.contains(pattern))
+                inverseUsersClubs.add(state.clubs.get(i));
+        }
+
+        return inverseUsersClubs;
     }
 
     public static ArrayList<Club> getOwnedClubs(int userid)

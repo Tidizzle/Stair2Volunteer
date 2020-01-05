@@ -1,5 +1,6 @@
 package com.stair2.Volunteer.DatabaseData;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 /**
@@ -55,5 +56,43 @@ public class DatabaseState
         }
 
         return count;
+    }
+
+    public Club getClubFromId(int clubId)
+    {
+        for(int i = 0; i < clubs.size(); i++)
+        {
+            if(clubs.get(i).clubId == clubId)
+                return clubs.get(i);
+        }
+
+        return null;
+    }
+
+    public ArrayList<User> getUserListFromClubId(int clubId)
+    {
+        ArrayList userlist = new ArrayList<User>();
+
+        for(int i = 0; i < memberships.size(); i++)
+        {
+            Membership m = memberships.get(i);
+
+            if(m.clubId == clubId)
+                userlist.add(getUserFromId(m.userId));
+
+        }
+
+        return userlist;
+    }
+
+    public User getUserFromId(int userId)
+    {
+        for(int i = 0; i < users.size(); i++)
+        {
+            if(users.get(i).userId == userId)
+                return users.get(i);
+        }
+
+        return null;
     }
 }

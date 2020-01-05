@@ -79,8 +79,10 @@ public class GetDatabaseStateTask extends AsyncTask<Void, Void, DatabaseState>
                 int ownerid = results.getInt("ownerId");
                 String clubName = results.getString("clubName");
                 String desc = results.getString("clubDesc");
+                String siteUrl = results.getString("siteUrl");
+                int reqhr = results.getInt("reqHours");
 
-                newState.clubs.add(new Club(clubid, ownerid, clubName, desc));
+                newState.clubs.add(new Club(clubid, ownerid, clubName, desc, siteUrl, reqhr));
             }
             results.close();
 
