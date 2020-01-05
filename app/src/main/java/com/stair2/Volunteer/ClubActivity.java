@@ -304,7 +304,8 @@ public class ClubActivity extends AppCompatActivity {
 
     public void createClub(View view)
     {
-        //TODO: add create club view page
+        Intent createClubActivity = new Intent(this, CreateClubActivity.class);
+        startActivity(createClubActivity);
     }
 
 
