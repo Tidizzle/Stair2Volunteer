@@ -105,4 +105,35 @@
         android:text="Leave Club"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/clubDetail_ManageMembers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:onClick="manageMembers"
+        android:text="Manage Members"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/clubDetail_EditDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="editDetails"
+        android:text="Edit Details"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/clubDetail_DeleteClub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="deleteClub"
+        android:text="Delete Club"
+        android:textAllCaps="false" />
+
 </LinearLayout>

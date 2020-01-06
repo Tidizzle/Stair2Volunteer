@@ -3,6 +3,7 @@ package com.stair2.Volunteer.Async;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.stair2.Volunteer.AppState;
 import com.stair2.Volunteer.Callback.AsyncUserResponse;
 import com.stair2.Volunteer.DatabaseConnect;
 import com.stair2.Volunteer.DatabaseData.User;
@@ -34,7 +35,7 @@ public class CreateUserTask extends AsyncTask<String, Void, User>
 
 
         try{
-            int guid = User.genNewGUID(); //create a new GUID to be assigned to the user
+            int guid = AppState.genNewGUID(); //create a new GUID to be assigned to the user
 
             String query = String.format(
                     "INSERT INTO %1$s (%2$s,%3$s,%4$s,%5$s,%6$s) VALUES ('%7$s','%8$s','%9$s','%10$s','%11$s');",

@@ -293,7 +293,12 @@ public class ClubActivity extends AppCompatActivity {
 
     public void manageClick(View view)
     {
-        //TODO: add logic to move to manage club page
+        int clubId = (int)view.getTag();
+
+        Intent clubDetailIntent = new Intent(this, ClubDetailActivity.class);
+        clubDetailIntent.putExtra("clubId", clubId);
+        clubDetailIntent.putExtra("detailType", 1); //open detail as manage
+        startActivity(clubDetailIntent);
     }
 
     public void joinClubs(View view)
@@ -306,6 +311,13 @@ public class ClubActivity extends AppCompatActivity {
     {
         Intent createClubActivity = new Intent(this, CreateClubActivity.class);
         startActivity(createClubActivity);
+    }
+
+    public void refresh(View view)
+    {
+        Intent i = getIntent();
+        startActivity(i);
+        finish();
     }
 
 

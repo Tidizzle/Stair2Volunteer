@@ -13,7 +13,7 @@ public class JoinClubTask extends AsyncTask<Membership, Void, Integer>
 
         Membership m = memberships[0];
 
-        String query = String.format("INSERT INTO memberships VALUES(%1$s, %2$s, 'Member');", m.clubId, m.userId);
+        String query = String.format("INSERT INTO memberships VALUES(%1$s, %2$s);", m.clubId, m.userId);
 
         DatabaseConnect.updateDatabase(query);
 

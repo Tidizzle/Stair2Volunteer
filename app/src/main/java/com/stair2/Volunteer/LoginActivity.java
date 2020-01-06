@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncUserRespons
 
         AppState state = new AppState();
         state.LoadAppState();
+
+        findViewById(R.id.login_username).requestFocus();//move to the username box for ease of use
     }
 
     public void submitLogin(View view)
@@ -44,18 +46,26 @@ public class LoginActivity extends AppCompatActivity implements AsyncUserRespons
         String username = ((EditText)findViewById(R.id.login_username)).getText().toString();
         String password = ((EditText)findViewById(R.id.login_password)).getText().toString();
 
-        String passwordSecure = PassHash.HashPassword(password); //get the hash
-        password = null; //overwrite the variable to remove plaintext password from memory
+        //make sure the user actually inputs something
+        if(username.length() == 0 || password.length() == 0)
+        {
+            Toast.makeText(this, "Enter your username and password!", Toast.LENGTH_LONG).show();
+            findViewById(R.id.login_username).requestFocus();
+        }
+        else
+        {
+            String passwordSecure = PassHash.HashPassword(password); //get the hash
+            password = null; //overwrite the variable to remove plaintext password from memory
 
-        //execute the asynchronous login check
-        checkLogin.execute(username, passwordSecure);
+            //execute the asynchronous login check
+            checkLogin.execute(username, passwordSecure);
 
-        //disable the submit button so the user cant spam it and crash the app
-        ((Button)findViewById(R.id.login_submit)).setEnabled(false);
+            //disable the submit button so the user cant spam it and crash the app
+            ((Button)findViewById(R.id.login_submit)).setEnabled(false);
 
-        //Show a short toast to make sure user knows things are happening in case query takes longer
-        Toast.makeText(this,"Logging in...", Toast.LENGTH_SHORT).show();
-
+            //Show a short toast to make sure user knows things are happening in case query takes longer
+            Toast.makeText(this,"Logging in...", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

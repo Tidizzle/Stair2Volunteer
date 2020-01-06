@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -147,6 +148,10 @@ public class JoinClubActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Joining Club...", Toast.LENGTH_LONG).show();
         task.execute(newMembership);
+
+        Intent back = new Intent(this, ClubActivity.class);
+        startActivity(back);
+        finish();
 
     }
 }
