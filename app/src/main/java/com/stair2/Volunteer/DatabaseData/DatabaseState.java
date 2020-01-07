@@ -1,6 +1,5 @@
 package com.stair2.Volunteer.DatabaseData;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 /**
@@ -24,6 +23,11 @@ public class DatabaseState
         memberships = new ArrayList<Membership>();
     }
 
+    /**
+     * Returns the number of not-yet-finished events
+     * @param userId id of user to search
+     * @return number of incomplete events
+     */
     public int getIncompleteSignups(int userId)
     {
         int count = 0;
@@ -41,6 +45,11 @@ public class DatabaseState
         return count;
     }
 
+    /**
+     * Returns the number of finished events
+     * @param userId id of user to search
+     * @return number of completed events
+     */
     public int getCompleteSignups(int userId)
     {
         int count = 0;
@@ -58,6 +67,11 @@ public class DatabaseState
         return count;
     }
 
+    /**
+     * Get the club object by the clubId
+     * @param clubId ClubId of object
+     * @return Club Object associated with clubId
+     */
     public Club getClubFromId(int clubId)
     {
         for(int i = 0; i < clubs.size(); i++)
@@ -69,6 +83,11 @@ public class DatabaseState
         return null;
     }
 
+    /**
+     * Get the list of users that are members of a club
+     * @param clubId Clubid of club to retrieve from
+     * @return List of users in specified club
+     */
     public ArrayList<User> getUserListFromClubId(int clubId)
     {
         ArrayList userlist = new ArrayList<User>();
@@ -85,6 +104,11 @@ public class DatabaseState
         return userlist;
     }
 
+    /**
+     * Get the User object associated with a userId
+     * @param userId Userid to search for
+     * @return User object
+     */
     public User getUserFromId(int userId)
     {
         for(int i = 0; i < users.size(); i++)
@@ -94,5 +118,89 @@ public class DatabaseState
         }
 
         return null;
+    }
+
+    /**
+     * Get the list of clubs that a user is a member of
+     * @param userid Userid of person to search
+     * @return List of users clubs
+     */
+    public ArrayList<Club> getClubs(int userid)
+    {
+        //collect all of the users memberships
+        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
+        for(int i = 0; i < memberships.size(); i++)
+        {
+            if(memberships.get(i).userId == userid)
+                usersMemberships.add(memberships.get(i));
+        }
+
+        //collect all of the clubs that match the pattern
+        ArrayList<Club> usersClubs = new ArrayList<>();
+        for(int i = 0; i < clubs.size();i++)
+        {
+            Membership pattern = new Membership(userid,clubs.get(i).clubId);
+
+            if(usersMemberships.contains(pattern))
+                usersClubs.add(clubs.get(i));
+        }
+
+        return usersClubs;
+    }
+
+    /**
+     * Get the list of clubs a user is not a member of
+     * @param userid id of user to search
+     * @return list of clubs the specified user is not associated with
+     */
+    public ArrayList<Club> getClubsNotJoined(int userid)
+    {
+        //collect all of the users memberships
+        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
+        for(int i = 0; i < memberships.size(); i++)
+        {
+            if(memberships.get(i).userId == userid)
+                usersMemberships.add(memberships.get(i));
+        }
+
+        //collect all of the clubs that match the pattern
+        ArrayList<Club> inverseUsersClubs = new ArrayList<>();
+        for(int i = 0; i < clubs.size();i++)
+        {
+            Membership pattern = new Membership(userid,clubs.get(i).clubId);
+
+            if(!usersMemberships.contains(pattern))
+                inverseUsersClubs.add(clubs.get(i));
+        }
+
+        return inverseUsersClubs;
+    }
+
+    /**
+     * Get the list of clubs a user is owner of
+     * @param userid id of user to search
+     * @return List of the users owned clubs
+     */
+    public ArrayList<Club> getOwnedClubs(int userid)
+    {
+        //collect all of the users memberships
+        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
+        for(int i = 0; i < memberships.size(); i++)
+        {
+            if(memberships.get(i).userId == userid)
+                usersMemberships.add(memberships.get(i));
+        }
+
+        //collect all of the clubs that match the pattern
+        ArrayList<Club> usersClubs = new ArrayList<>();
+        for(int i = 0; i < clubs.size();i++)
+        {
+            Membership pattern = new Membership(userid,clubs.get(i).clubId);
+
+            if(usersMemberships.contains(pattern))
+                usersClubs.add(clubs.get(i));
+        }
+
+        return usersClubs;
     }
 }

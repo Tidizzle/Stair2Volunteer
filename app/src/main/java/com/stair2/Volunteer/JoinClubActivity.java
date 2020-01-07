@@ -32,7 +32,7 @@ public class JoinClubActivity extends AppCompatActivity {
 
         setTitle("Join a club");
 
-        ArrayList<Club> usersNotJoinedClubs = AppState.getClubsNotJoined(AppState.LoggedInUser.userId);
+        ArrayList<Club> usersNotJoinedClubs = AppState.state.getClubsNotJoined(AppState.LoggedInUser.userId);
         createCards(usersNotJoinedClubs);
     }
 

@@ -20,7 +20,7 @@ public class AppState implements AsyncDatabaseStateResponse
     public static int completesignups = 0;
     public static int incompletesignups = 0;
 
-    private static final int GUID_LENGTH = 6;
+    private static final int GUID_LENGTH = 6; //length of guids to generate
 
     public static DatabaseState state;
 
@@ -38,75 +38,6 @@ public class AppState implements AsyncDatabaseStateResponse
         dbtask.delegate = this;
 
         dbtask.execute();
-    }
-
-    public static ArrayList<Club> getClubs(int userid)
-    {
-        //collect all of the users memberships
-        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
-        for(int i = 0; i < state.memberships.size(); i++)
-        {
-            if(state.memberships.get(i).userId == userid)
-                usersMemberships.add(state.memberships.get(i));
-        }
-
-        //collect all of the clubs that match the pattern
-        ArrayList<Club> usersClubs = new ArrayList<>();
-        for(int i = 0; i < state.clubs.size();i++)
-        {
-            Membership pattern = new Membership(userid,state.clubs.get(i).clubId);
-
-            if(usersMemberships.contains(pattern))
-                usersClubs.add(state.clubs.get(i));
-        }
-
-        return usersClubs;
-    }
-
-    public static ArrayList<Club> getClubsNotJoined(int userid)
-    {
-        //collect all of the users memberships
-        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
-        for(int i = 0; i < state.memberships.size(); i++)
-        {
-            if(state.memberships.get(i).userId == userid)
-                usersMemberships.add(state.memberships.get(i));
-        }
-
-        //collect all of the clubs that match the pattern
-        ArrayList<Club> inverseUsersClubs = new ArrayList<>();
-        for(int i = 0; i < state.clubs.size();i++)
-        {
-            Membership pattern = new Membership(userid,state.clubs.get(i).clubId);
-
-            if(!usersMemberships.contains(pattern))
-                inverseUsersClubs.add(state.clubs.get(i));
-        }
-
-        return inverseUsersClubs;
-    }
-
-    public static ArrayList<Club> getOwnedClubs(int userid)
-    {
-        //collect all of the users memberships
-        ArrayList<Membership> usersMemberships = new ArrayList<Membership>();
-        for(int i = 0; i < state.memberships.size(); i++)
-        {
-            if(state.memberships.get(i).userId == userid)
-                usersMemberships.add(state.memberships.get(i));
-        }
-
-        //collect all of the clubs that match the pattern
-        ArrayList<Club> usersClubs = new ArrayList<>();
-        for(int i = 0; i < state.clubs.size();i++)
-        {
-            Membership pattern = new Membership(userid,state.clubs.get(i).clubId);
-
-            if(usersMemberships.contains(pattern))
-                usersClubs.add(state.clubs.get(i));
-        }
-
-        return usersClubs;
     }
 
     /**
@@ -141,6 +72,7 @@ public class AppState implements AsyncDatabaseStateResponse
     @Override
     public void ProcessFinish(DatabaseState st)
     {
+        //set the returned state
         state = st;
     }
 }

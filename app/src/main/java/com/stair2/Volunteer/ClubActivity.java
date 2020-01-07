@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -23,7 +21,6 @@ import com.stair2.Volunteer.DatabaseData.Club;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClubActivity extends AppCompatActivity {
 
@@ -35,6 +32,7 @@ public class ClubActivity extends AppCompatActivity {
         setTitle("Clubs");
 
 
+        //make sure that the user is set to admin if nothing else
         int id;
         if(AppState.LoggedInUser == null)
             id = 0;
@@ -42,12 +40,19 @@ public class ClubActivity extends AppCompatActivity {
             id = AppState.LoggedInUser.userId;
 
 
-        ArrayList<Club> clubs = AppState.getClubs(id);
+        //get the users clubs and create the cards
+        ArrayList<Club> clubs = AppState.state.getClubs(id);
         createCards(filterMemberOnly(clubs, id));
         createOwnedCards(filterOwnerOnly(clubs, id));
 
     }
 
+    /**
+     * Sort the clubs to only those that the specified id is a member of
+     * @param dirtyList List of unsorted clubs
+     * @param id Userid to search for
+     * @return Cleaned list of clubs
+     */
     public ArrayList<Club> filterMemberOnly(ArrayList<Club> dirtyList, int id)
     {
         ArrayList<Club> cleanedList = new ArrayList<Club>();
@@ -62,6 +67,12 @@ public class ClubActivity extends AppCompatActivity {
         return cleanedList;
     }
 
+    /**
+     * Sort the clubs to only those that the specified id is the owner of
+     * @param dirtyList List of unsorted clubs
+     * @param id userid to search for
+     * @return Cleaned list of clubs
+     */
     public ArrayList<Club> filterOwnerOnly(ArrayList<Club> dirtyList, int id)
     {
         ArrayList<Club> cleanedList = new ArrayList<>();
@@ -282,6 +293,7 @@ public class ClubActivity extends AppCompatActivity {
         }
     }
 
+    //button click of the member club "view"
     public void buttonClick(View view)
     {
         int clubId = (int)view.getTag();
@@ -291,6 +303,7 @@ public class ClubActivity extends AppCompatActivity {
         startActivity(clubDetailIntent);
     }
 
+    //click of the owned clubs "manage"
     public void manageClick(View view)
     {
         int clubId = (int)view.getTag();
@@ -315,6 +328,7 @@ public class ClubActivity extends AppCompatActivity {
 
     public void refresh(View view)
     {
+        //refresh the activity to update the club lists
         Intent i = getIntent();
         startActivity(i);
         finish();

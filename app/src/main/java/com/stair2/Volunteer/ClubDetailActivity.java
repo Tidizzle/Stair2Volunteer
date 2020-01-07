@@ -28,9 +28,11 @@ public class ClubDetailActivity extends AppCompatActivity {
 
         setTitle("Club Detail");
 
+        //retrieve the club id from the sender
         clubId = getIntent().getIntExtra("clubId", 0);
         Club requestedClub = AppState.state.getClubFromId(clubId);
 
+        //get the detailtype to determine how the screen should be set up
         DetailType = getIntent().getIntExtra("detailType", 0);
 
 
@@ -43,6 +45,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         else
             ((TextView)findViewById(R.id.clubDetail_Website)).setText(requestedClub.websiteUrl);
 
+        //change the visible buttons based on whos looking at the screen
         //0 == detail view, 1 == manage view
         if(DetailType == 0)
         {
@@ -58,6 +61,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         }
     }
 
+    //move to the members activity
     public void showMemebers(View view)
     {
         Intent memberDetail = new Intent(this, ClubMembersActivity.class);
@@ -70,6 +74,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         //todo: send to sponsored feed when implemented
     }
 
+    //alert the user and then move along with the leave
     public void leaveClub(View view)
     {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
@@ -90,6 +95,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         b.show();
     }
 
+    //move back to the clubactivity class and delete this from the application stack
     public void moveBack()
     {
         Intent back = new Intent(this, ClubActivity.class);
@@ -97,6 +103,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         finish();
     }
 
+    //move to the members activity as manage
     public void manageMembers(View view)
     {
         Intent managedetail = new Intent(this, ClubMembersActivity.class);
@@ -105,6 +112,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         startActivity(managedetail);
     }
 
+    //move to the create page as an edit
     public void editDetails(View view)
     {
         Intent editdetails = new Intent(this, CreateClubActivity.class);
@@ -112,6 +120,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         startActivity(editdetails);
     }
 
+    //delete the club with a prompt
     public void deleteClub(View view)
     {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
@@ -128,6 +137,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         b.show();
     }
 
+    //continue with delete if the user selects it
     public void contDelete()
     {
         Club target = AppState.state.getClubFromId(clubId);

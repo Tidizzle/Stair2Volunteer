@@ -1,9 +1,8 @@
 package com.stair2.Volunteer.DatabaseData;
 
-import java.util.UUID;
 
 /**
- * User holds pertinent user information including a guidGeneration method
+ * User holds pertinent user information
  * @author Zach Taylor
  */
 public class User

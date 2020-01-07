@@ -2,8 +2,6 @@ package com.stair2.Volunteer.DatabaseData;
 
 import androidx.annotation.Nullable;
 
-import java.lang.reflect.Member;
-
 /**
  * Represents a Users relationship to a club
  * @author Zach Taylor
@@ -21,6 +19,7 @@ public class Membership
         //role = r;
     }
 
+    //Have to have overridden equals so that we can use pattern matching for retrieving clubs
     @Override
     public boolean equals(@Nullable Object obj)
     {

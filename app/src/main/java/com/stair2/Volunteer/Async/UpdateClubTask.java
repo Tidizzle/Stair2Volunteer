@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import com.stair2.Volunteer.DatabaseConnect;
 import com.stair2.Volunteer.DatabaseData.Club;
 
+/**
+ * Updates the database record for an already existing club with changed info
+ */
 public class UpdateClubTask extends AsyncTask<Club, Void, Integer>
 {
     @Override

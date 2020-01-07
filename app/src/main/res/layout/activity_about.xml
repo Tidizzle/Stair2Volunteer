@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Team Stair2"
+        android:textSize="35sp"
+        android:gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/stair2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Designed and developed by Wakefield High School Stair2 development team for Ready Set App 2020 Competition."
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Created in java using Android Studio. Azure SQL Server backend with JTDS SQL Driver."
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zach Taylor - App and Backend developer"
+        android:gravity="left"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="27dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ryan Mikula - App developer"
+        android:gravity="left"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="27dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Julian Franzen - App developer"
+        android:gravity="left"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="27dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zion Harvey - Designer"
+        android:gravity="left"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="27dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stacey Shannon - Team Advisor"
+        android:gravity="left"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="27dp"/>
+</LinearLayout>

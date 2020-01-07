@@ -6,6 +6,10 @@ import com.stair2.Volunteer.AppState;
 import com.stair2.Volunteer.DatabaseConnect;
 import com.stair2.Volunteer.DatabaseData.Membership;
 
+/**
+ * Updates the database with a membership of a new user joining a club
+ * @author Zach Taylor
+ */
 public class JoinClubTask extends AsyncTask<Membership, Void, Integer>
 {
     @Override
@@ -23,6 +27,7 @@ public class JoinClubTask extends AsyncTask<Membership, Void, Integer>
     @Override
     protected void onPostExecute(Integer integer) {
 
+        //reload the appstate to update the new info
         AppState s = new AppState();
         s.LoadAppState();
     }
