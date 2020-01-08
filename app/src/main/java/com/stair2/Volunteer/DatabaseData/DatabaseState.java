@@ -203,4 +203,18 @@ public class DatabaseState
 
         return usersClubs;
     }
+
+    public ArrayList<Event> getEvents(int userId)
+    {
+        ArrayList<Event> usersEvents = new ArrayList<>();
+        for(int i = 0; i < events.size(); i++)
+        {
+            Event e = events.get(i);
+            if(e.ownerId == userId)
+                usersEvents.add(e);
+        }
+
+        return usersEvents;
+    }
+
 }

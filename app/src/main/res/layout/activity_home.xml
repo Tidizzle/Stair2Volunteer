@@ -208,6 +208,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="170dp"
+                android:text="      Manage Events"
+                android:background="@android:color/transparent"
+                android:gravity="left|center"
+                android:paddingLeft="40dp"
+                android:drawableLeft="@drawable/ic_wrench"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:onClick="eventsClick"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="240dp"
                 android:text="      About"
                 android:background="@android:color/transparent"
                 android:gravity="left|center"

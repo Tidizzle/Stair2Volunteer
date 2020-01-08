@@ -64,6 +64,12 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public void eventsClick(View view)
+    {
+        Intent mngevents = new Intent(this, EventActivity.class);
+        startActivity(mngevents);
+    }
+
     public void infoClick(View view)
     {
         Intent info = new Intent(this, AboutActivity.class);
