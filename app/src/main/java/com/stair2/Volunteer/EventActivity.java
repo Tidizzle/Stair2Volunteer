@@ -14,7 +14,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.stair2.Volunteer.DatabaseData.Event;
 
 import org.w3c.dom.Text;
@@ -34,6 +36,14 @@ public class EventActivity extends AppCompatActivity {
             GenNoEventCard();
         else
             GenEventCards(events);
+
+        //add action listener for fab
+        ((FloatingActionButton)findViewById(R.id.event_fab)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFabClick(v);
+            }
+        });
     }
 
     public void GenNoEventCard()
@@ -74,9 +84,9 @@ public class EventActivity extends AppCompatActivity {
             CardView card = new CardView(context);
             LayoutParams clp = new LayoutParams(
                     LayoutParams.MATCH_PARENT,
-                    165
+                    400
             );
-            clp.bottomMargin = 14;
+            clp.bottomMargin = 25;
             card.setLayoutParams(clp);
 
             card.setRadius(15f);
@@ -97,11 +107,12 @@ public class EventActivity extends AppCompatActivity {
             TextView title = new TextView(context);
             LayoutParams tlp = new LayoutParams(
                     LayoutParams.MATCH_PARENT,
-                    25
+                    55
             );
+            tlp.topMargin = 10;
             title.setLayoutParams(tlp);
 
-            title.setPadding(10,0,0,0);
+            title.setPadding(20,0,0,0);
             title.setText(event.title);
             title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             title.setGravity(Gravity.BOTTOM);
@@ -118,13 +129,24 @@ public class EventActivity extends AppCompatActivity {
             TextView desc = new TextView(context);
             LayoutParams dlp = new LayoutParams(
                     LayoutParams.MATCH_PARENT,
-                    75
+                    150
             );
             dlp.setMarginStart(20);
             dlp.setMarginEnd(20);
             desc.setLayoutParams(dlp);
 
             desc.setText(event.description);
+
+            //time textview
+            TextView time = new TextView(context);
+            LayoutParams tdlp = new LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    50
+            );
+            tdlp.setMarginStart(20);
+            tdlp.setMarginEnd(20);
+            time.setLayoutParams(tdlp);
+            time.setText(event.parseDate() + " at " + event.parseTime());
 
             //divider
             View botdiv = new View(context);
@@ -139,7 +161,7 @@ public class EventActivity extends AppCompatActivity {
             Button managebtn = new Button(context);
             LayoutParams blp = new LayoutParams(
                     LayoutParams.MATCH_PARENT,
-                    40
+                    100
             );
             blp.setMarginStart(20);
             blp.setMarginEnd(20);
@@ -147,11 +169,19 @@ public class EventActivity extends AppCompatActivity {
             managebtn.setLayoutParams(blp);
             managebtn.setText("Manage");
             managebtn.setBackgroundColor(Color.TRANSPARENT);
+            managebtn.setTag(event.eventId);
+            managebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    manageOnClick(v);
+                }
+            });
 
             //stack all views
             cardCont.addView(title);
             cardCont.addView(topDiv);
             cardCont.addView(desc);
+            cardCont.addView(time);
             cardCont.addView(botdiv);
             cardCont.addView(managebtn);
 
@@ -160,5 +190,17 @@ public class EventActivity extends AppCompatActivity {
             rootCont.addView(card);
 
         }
+    }
+
+    public void manageOnClick(View view)
+    {
+        int eventId = (int)view.getTag();
+        Toast.makeText(this, Integer.toString(eventId), Toast.LENGTH_LONG).show();
+
+    }
+
+    public void addFabClick(View view)
+    {
+        Toast.makeText(this, "FAB!", Toast.LENGTH_LONG).show();
     }
 }

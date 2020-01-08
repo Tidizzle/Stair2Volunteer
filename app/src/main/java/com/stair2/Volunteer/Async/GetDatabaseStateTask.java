@@ -20,6 +20,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
 
 /**
  * Task to download the database information and store it in a databasestate object
@@ -96,8 +97,9 @@ public class GetDatabaseStateTask extends AsyncTask<Void, Void, DatabaseState>
                 String desc = results.getString("eventDesc");
                 String location = results.getString("location");
                 Date date = results.getDate("eventDate");
+                Time time = results.getTime("eventTime");
 
-                newState.events.add(new Event(eventId, ownerId, title, desc, location, date));
+                newState.events.add(new Event(eventId, ownerId, title, desc, location, date, time));
             }
             results.close();
 

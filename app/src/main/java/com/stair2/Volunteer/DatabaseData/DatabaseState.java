@@ -217,4 +217,16 @@ public class DatabaseState
         return usersEvents;
     }
 
+    public Event getEventFromId(int eventId)
+    {
+        for(int i = 0; i < events.size(); i++)
+        {
+            Event e = events.get(i);
+            if(e.eventId == eventId)
+                return e;
+        }
+
+        return null;
+    }
+
 }
