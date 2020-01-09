@@ -13,31 +13,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#fff"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            >
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Event Title"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="95dp"/>
 
             <EditText
                 android:id="@+id/createEvent_Title"
                 android:layout_height="wrap_content"
-                android:layout_width="200dp"
+                android:layout_width="210dp"
                 android:layout_gravity="right|center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:orientation="horizontal">
 
             <TextView
@@ -59,7 +59,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <TextView
@@ -78,7 +78,47 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date"
+                android:layout_gravity="center_vertical"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/createEvent_Date"
+                    android:layout_height="wrap_content"
+                    android:layout_width="210dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:focusable="false"
+                    />
+
+                <ImageButton
+                    android:id="@+id/createEvent_DatePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_date_icon"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="dateClick"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <TextView
@@ -89,18 +129,39 @@
                 android:layout_gravity="center_vertical"
                 />
 
-            <EditText
-                android:id="@+id/createEvent_StartTime"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="210dp"
-                android:layout_gravity="right|center_vertical"/>
+                android:layout_gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/createEvent_StartTime"
+                    android:layout_height="wrap_content"
+                    android:layout_width="210dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:focusable="false"
+                    />
+
+                <ImageButton
+                    android:id="@+id/createEvent_TimePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_time_icon"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="timeClick"
+                    />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,6 +179,43 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!--<Switch
+                android:id="@+id/switch1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sponsor Event"
+                />-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sponsoring Club"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="20dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:singleLine="true"
+                    android:id="@+id/createEvent_Chips">
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/createEvent_actionButton"
             android:layout_width="150dp"
@@ -128,7 +226,7 @@
             android:layout_marginTop="20dp"
             android:onClick="createClick"/>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/createEvent_AdminDebug"
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -147,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical" />
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 

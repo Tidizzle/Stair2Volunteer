@@ -16,8 +16,9 @@ public class Event
     public String location;
     public Date date;
     public Time time;
+    public int length;
 
-    public Event(int id, int owner, String eventtitle, String desc, String loc, Date dt, Time tm)
+    public Event(int id, int owner, String eventtitle, String desc, String loc, Date dt, Time tm, int len)
     {
         eventId = id;
         ownerId = owner;
@@ -26,6 +27,7 @@ public class Event
         location = loc;
         date = dt;
         time = tm;
+        length = len;
     }
 
     public String parseDate()
@@ -35,7 +37,7 @@ public class Event
         String month = raw.substring(5,7);
         String day = raw.substring(8);
 
-        return month + "-" + day + "-" + year;
+        return month + "/" + day + "/" + year;
     }
 
     public String parseTime()

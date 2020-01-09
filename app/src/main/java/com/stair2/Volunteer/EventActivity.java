@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -201,6 +202,7 @@ public class EventActivity extends AppCompatActivity {
 
     public void addFabClick(View view)
     {
-        Toast.makeText(this, "FAB!", Toast.LENGTH_LONG).show();
+        Intent a = new Intent(this, CreateEventActivity.class);
+        startActivity(a);
     }
 }

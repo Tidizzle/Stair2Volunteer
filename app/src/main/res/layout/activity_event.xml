@@ -248,9 +248,9 @@
             android:layout_gravity="right|bottom"
             android:layout_margin="16dp"
             android:src="@drawable/ic_plus"
-            android:id="@+id/event_fab"
-            android:backgroundTint="@color/colorPrimary"
-            />
+            android:id="@+id/event_fab"/>
+            <!--android:backgroundTint="@color/colorPrimary"-->
+
 
     </LinearLayout>
 

@@ -180,7 +180,9 @@ public class DatabaseState
      * Get the list of clubs a user is owner of
      * @param userid id of user to search
      * @return List of the users owned clubs
+     *
      */
+    @Deprecated
     public ArrayList<Club> getOwnedClubs(int userid)
     {
         //collect all of the users memberships

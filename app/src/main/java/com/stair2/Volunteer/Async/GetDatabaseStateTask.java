@@ -98,8 +98,9 @@ public class GetDatabaseStateTask extends AsyncTask<Void, Void, DatabaseState>
                 String location = results.getString("location");
                 Date date = results.getDate("eventDate");
                 Time time = results.getTime("eventTime");
+                int length = results.getInt("length");
 
-                newState.events.add(new Event(eventId, ownerId, title, desc, location, date, time));
+                newState.events.add(new Event(eventId, ownerId, title, desc, location, date, time, length));
             }
             results.close();
 
