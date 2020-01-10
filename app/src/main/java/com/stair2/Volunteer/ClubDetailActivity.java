@@ -146,5 +146,6 @@ public class ClubDetailActivity extends AppCompatActivity {
 
         Intent back = new Intent(this, ClubActivity.class);
         startActivity(back);
+        finish();
     }
 }

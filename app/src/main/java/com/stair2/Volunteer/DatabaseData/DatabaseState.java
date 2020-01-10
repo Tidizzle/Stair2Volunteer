@@ -13,6 +13,7 @@ public class DatabaseState
     public ArrayList<Event> events;
     public ArrayList<Signup> signups;
     public ArrayList<Membership> memberships;
+    public ArrayList<Endorsement> endorsements;
 
     public DatabaseState()
     {
@@ -21,6 +22,7 @@ public class DatabaseState
         events = new ArrayList<Event>();
         signups = new ArrayList<Signup>();
         memberships = new ArrayList<Membership>();
+        endorsements = new ArrayList<Endorsement>();
     }
 
     /**

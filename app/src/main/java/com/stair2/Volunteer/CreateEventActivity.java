@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,10 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.CornerTreatment;
+import com.stair2.Volunteer.Async.CreateEndorsementTask;
+import com.stair2.Volunteer.Async.CreateEventTask;
 import com.stair2.Volunteer.DatabaseData.Club;
+import com.stair2.Volunteer.DatabaseData.Endorsement;
 import com.stair2.Volunteer.DatabaseData.Event;
 
 import java.sql.Time;
@@ -30,6 +34,8 @@ public class CreateEventActivity extends AppCompatActivity {
 
     int eventid;
     int chosenClubId = 0;
+
+    ArrayList<Club> listedChips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
         ArrayList<Club> clubs = filterOwnerOnly(AppState.state.clubs, AppState.LoggedInUser.userId);
         createChips(clubs);
+        listedChips = clubs;
     }
 
     /**
@@ -144,6 +151,8 @@ public class CreateEventActivity extends AppCompatActivity {
     {
         java.sql.Date date = new java.sql.Date(new GregorianCalendar(year,month,day).getTime().getTime());
         ((EditText)findViewById(R.id.createEvent_Date)).setText(parseDate(date));
+        ((EditText)findViewById(R.id.createEvent_Date)).setTag(date);
+
     }
 
     public String parseDate(java.sql.Date date)
@@ -173,6 +182,7 @@ public class CreateEventActivity extends AppCompatActivity {
         Toast.makeText(this, hour + ":" + minute, Toast.LENGTH_SHORT).show();
         Time time = new Time(new GregorianCalendar(2010,2,2, hour, minute).getTime().getTime());
         ((EditText)findViewById(R.id.createEvent_StartTime)).setText(parseTime(time));
+        ((EditText)findViewById(R.id.createEvent_StartTime)).setTag(time);
     }
 
     public String parseTime(Time time)
@@ -187,6 +197,70 @@ public class CreateEventActivity extends AppCompatActivity {
             return hour + ":" + minute + " pm";
         else
             return hour + ":" + minute + " am";
+
+    }
+
+    public void actionClick(View view)
+    {
+        String title = ((EditText)findViewById(R.id.createEvent_Title)).getText().toString();
+        String desc = ((EditText)findViewById(R.id.createEvent_Description)).getText().toString();
+        String loc = ((EditText)findViewById(R.id.createEvent_Location)).getText().toString();
+
+        if(title.length() <= 30)
+        {
+            if(desc.length() <= 250)
+            {
+                if(loc.length() <= 45)
+                {
+                    if(findViewById(R.id.createEvent_Date).getTag() != null)
+                    {
+                        java.sql.Date date = (java.sql.Date)findViewById(R.id.createEvent_Date).getTag();
+
+                        if(findViewById(R.id.createEvent_StartTime).getTag() != null)
+                        {
+                            Time time = (Time)findViewById(R.id.createEvent_StartTime).getTag();
+
+                            if(((EditText)findViewById(R.id.createEvent_Length)).getText().length() > 0)
+                            {
+                                int length = Integer.parseInt(((EditText)findViewById(R.id.createEvent_Length)).getText().toString());
+                                ChipGroup group = (ChipGroup)findViewById(R.id.createEvent_Chips);
+
+                                int clubid = Integer.parseInt(((Chip)group.findViewById(group.getCheckedChipId())).getTag().toString());
+                                Club club = AppState.state.getClubFromId(clubid);
+
+                                Event newEvent = new Event(AppState.genNewGUID(), AppState.LoggedInUser.userId, title, desc, loc, date, time, length);
+                                CreateEventTask task = new CreateEventTask();
+                                task.execute(newEvent);
+
+                                Endorsement endorse = new Endorsement(club.clubId, newEvent.eventId);
+                                CreateEndorsementTask etask = new CreateEndorsementTask();
+                                //etask.execute(endorse);
+                                //TODO: fix endorsement creation
+
+                                AppState.state.events.add(newEvent);
+                                AppState.state.endorsements.add(endorse);
+
+                                Intent back = new Intent(this, EventActivity.class);
+                                startActivity(back);
+                                finish();
+                            }
+                            else
+                                Toast.makeText(this, "Please enter the event length.", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                            Toast.makeText(this,"Please select a time.", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(this,"Please select a date.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(this,"Location must be less than 45 characters.", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(this,"Description must be less than 250 characters", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this,"Title must be less than 30 characters", Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -10,6 +10,7 @@ import com.stair2.Volunteer.Callback.AsyncDatabaseStateResponse;
 import com.stair2.Volunteer.DatabaseConnect;
 import com.stair2.Volunteer.DatabaseData.Club;
 import com.stair2.Volunteer.DatabaseData.DatabaseState;
+import com.stair2.Volunteer.DatabaseData.Endorsement;
 import com.stair2.Volunteer.DatabaseData.Event;
 import com.stair2.Volunteer.DatabaseData.Membership;
 import com.stair2.Volunteer.DatabaseData.Signup;
@@ -35,6 +36,7 @@ public class GetDatabaseStateTask extends AsyncTask<Void, Void, DatabaseState>
     private final String eventQuery = "SELECT * FROM events;";
     private final String signupQuery = "SELECT * FROM signups;";
     private final String membershipQuery = "SELECT * FROM memberships;";
+    private final String endorsementsQuery = "SELECT * FROM endorsements;";
 
 
     @Override
@@ -126,6 +128,15 @@ public class GetDatabaseStateTask extends AsyncTask<Void, Void, DatabaseState>
                 newState.memberships.add(new Membership(userId, clubId/*, role*/));
             }
             results.close();
+
+            results = stmt.executeQuery(endorsementsQuery);
+            while(results.next())
+            {
+                int clubId = results.getInt("clubId");
+                int eventId = results.getInt("eventId");
+
+                newState.endorsements.add(new Endorsement(clubId, eventId));
+            }
 
 
             //make sure to close all the connections

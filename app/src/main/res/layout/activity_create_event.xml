@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateClubActivity"
+    tools:context=".CreateEventActivity"
     android:orientation="vertical"
     android:background="#fff">
 
@@ -173,9 +173,10 @@
 
             <EditText
                 android:id="@+id/createEvent_Length"
-                android:layout_height="wrap_content"
                 android:layout_width="210dp"
-                android:layout_gravity="right|center_vertical"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -224,28 +225,8 @@
             android:textAllCaps="false"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:onClick="createClick"/>
+            android:onClick="actionClick"/>
 
-        <!--<LinearLayout
-            android:id="@+id/createEvent_AdminDebug"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Owner Id Override" />
-
-            <EditText
-                android:id="@+id/createEvent_OwnerIdOverride"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical" />
-
-        </LinearLayout>-->
 
     </LinearLayout>
 

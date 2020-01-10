@@ -68,12 +68,16 @@ public class HomeActivity extends AppCompatActivity {
     {
         Intent mngevents = new Intent(this, EventActivity.class);
         startActivity(mngevents);
+        ((DrawerLayout)findViewById(R.id.home_drawer)).closeDrawer(GravityCompat.END);
+
     }
 
     public void infoClick(View view)
     {
         Intent info = new Intent(this, AboutActivity.class);
         startActivity(info);
+        ((DrawerLayout)findViewById(R.id.home_drawer)).closeDrawer(GravityCompat.END);
+
     }
 
     public void viewAllClubs(View view)

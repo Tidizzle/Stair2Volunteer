@@ -204,5 +204,6 @@ public class EventActivity extends AppCompatActivity {
     {
         Intent a = new Intent(this, CreateEventActivity.class);
         startActivity(a);
+        finish();
     }
 }
