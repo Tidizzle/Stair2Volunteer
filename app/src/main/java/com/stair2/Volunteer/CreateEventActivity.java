@@ -132,7 +132,6 @@ public class CreateEventActivity extends AppCompatActivity {
     public void chipClick(View view)
     {
         chosenClubId = Integer.parseInt(view.getTag().toString());
-        Toast.makeText(this, chosenClubId, Toast.LENGTH_SHORT).show();
     }
 
     public void dateClick(View view)
@@ -179,7 +178,6 @@ public class CreateEventActivity extends AppCompatActivity {
 
     public void timeReturned(int hour, int minute)
     {
-        Toast.makeText(this, hour + ":" + minute, Toast.LENGTH_SHORT).show();
         Time time = new Time(new GregorianCalendar(2010,2,2, hour, minute).getTime().getTime());
         ((EditText)findViewById(R.id.createEvent_StartTime)).setText(parseTime(time));
         ((EditText)findViewById(R.id.createEvent_StartTime)).setTag(time);
@@ -206,11 +204,11 @@ public class CreateEventActivity extends AppCompatActivity {
         String desc = ((EditText)findViewById(R.id.createEvent_Description)).getText().toString();
         String loc = ((EditText)findViewById(R.id.createEvent_Location)).getText().toString();
 
-        if(title.length() <= 30)
+        if(title.length() <= 30 && title.length() > 0)
         {
-            if(desc.length() <= 250)
+            if(desc.length() <= 250 && desc.length() > 0)
             {
-                if(loc.length() <= 45)
+                if(loc.length() <= 45 && loc.length() > 0)
                 {
                     if(findViewById(R.id.createEvent_Date).getTag() != null)
                     {
@@ -234,8 +232,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
                                 Endorsement endorse = new Endorsement(club.clubId, newEvent.eventId);
                                 CreateEndorsementTask etask = new CreateEndorsementTask();
-                                //etask.execute(endorse);
-                                //TODO: fix endorsement creation
+                                etask.execute(endorse);
 
                                 AppState.state.events.add(newEvent);
                                 AppState.state.endorsements.add(endorse);
@@ -245,22 +242,22 @@ public class CreateEventActivity extends AppCompatActivity {
                                 finish();
                             }
                             else
-                                Toast.makeText(this, "Please enter the event length.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Please enter the event length!", Toast.LENGTH_SHORT).show();
                         }
                         else
-                            Toast.makeText(this,"Please select a time.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this,"Please select a time!", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(this,"Please select a date.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Please select a date!", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(this,"Location must be less than 45 characters.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Enter a location no more than 40 characters!", Toast.LENGTH_SHORT).show();
             }
             else
-                Toast.makeText(this,"Description must be less than 250 characters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Enter a description no more than 250 characters!", Toast.LENGTH_SHORT).show();
         }
         else
-            Toast.makeText(this,"Title must be less than 30 characters", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter a title no more than 30 characters!", Toast.LENGTH_SHORT).show();
 
     }
 }
