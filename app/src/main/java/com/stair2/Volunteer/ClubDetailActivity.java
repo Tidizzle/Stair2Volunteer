@@ -98,8 +98,7 @@ public class ClubDetailActivity extends AppCompatActivity {
     //move back to the clubactivity class and delete this from the application stack
     public void moveBack()
     {
-        Intent back = new Intent(this, ClubActivity.class);
-        startActivity(back);
+
         finish();
     }
 
@@ -144,8 +143,6 @@ public class ClubDetailActivity extends AppCompatActivity {
         DeleteClubTask t = new DeleteClubTask();
         t.execute(target);
 
-        Intent back = new Intent(this, ClubActivity.class);
-        startActivity(back);
         finish();
     }
 }

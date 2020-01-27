@@ -1,5 +1,7 @@
 package com.stair2.Volunteer.DatabaseData;
 
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 
 /**
@@ -231,6 +233,65 @@ public class DatabaseState
         }
 
         return null;
+    }
+
+    public Club getSponsorFromEventId(int eventId)
+    {
+        for(int i = 0; i < endorsements.size(); i++)
+        {
+            Endorsement e = endorsements.get(i);
+            if(e.eventId == eventId)
+                return getClubFromId(e.clubId);
+        }
+
+        return null;
+    }
+
+    public ArrayList<User> getUsersFromEventId(int eventId)
+    {
+        ArrayList<Integer> userIds = new ArrayList<Integer>();
+        ArrayList<User> retList = new ArrayList<>();
+
+        for(int i = 0; i < signups.size(); i++)
+        {
+            Signup s = signups.get(i);
+
+            if(s.eventId == eventId)
+                userIds.add(s.userId);
+        }
+
+        for(int i = 0; i < users.size(); i++)
+        {
+            User u = users.get(i);
+            if(userIds.contains(u.userId))
+                retList.add(u);
+        }
+
+        return retList;
+    }
+
+    public ArrayList<Event> getSponsoredEventsFromClubId(int clubId)
+    {
+        ArrayList<Integer> end = new ArrayList<>();
+        ArrayList<Event> retList = new ArrayList<>();
+
+        for(int i = 0; i < endorsements.size(); i++)
+        {
+            Endorsement e = endorsements.get(i);
+
+            if(e.clubId == clubId)
+                end.add(e.eventId);
+        }
+
+        for(int i = 0; i < events.size(); i++)
+        {
+            Event e = events.get(i);
+
+            if(end.contains(e.eventId))
+                retList.add(e);
+        }
+
+        return retList;
     }
 
 }

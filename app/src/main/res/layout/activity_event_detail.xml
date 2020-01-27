@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventDetailActivity"
+    android:orientation="vertical"
+    android:background="#efefef">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="5dp"
+        card_view:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/eventDetail_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textSize="20sp"
+                android:text="Computer Science Teacher Help"/>
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="5dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="2dp"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/divider_horizontal_bright"/>
+
+            <TextView
+                android:id="@+id/eventDetail_Description"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginLeft="5dp"
+                android:text="Help a compsci teacher with filing, grading, etc."
+                />
+
+            <TextView
+                android:id="@+id/eventDetail_Location"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:text="Wakefield high, room 3212" />
+
+            <TextView
+                android:id="@+id/eventDetail_Sponsor"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:text="Sponsor: Computer Science Club" />
+
+            <TextView
+                android:id="@+id/eventDetail_DateTime"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:text="5-15-20, 12:30 pm" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/eventDetail_SignUps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="viewSignUps"
+        android:text="Sign Ups"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/eventDetail_Leave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="leaveEvent"
+        android:text="Leave Event"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/eventDetail_EditEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="editEvent"
+        android:text="Edit Event"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/eventDetail_DeleteEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:onClick="deleteEvent"
+        android:text="Delete Event"
+        android:textAllCaps="false" />
+</LinearLayout>

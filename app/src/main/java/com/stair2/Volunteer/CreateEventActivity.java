@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.CornerTreatment;
 import com.stair2.Volunteer.Async.CreateEndorsementTask;
 import com.stair2.Volunteer.Async.CreateEventTask;
+import com.stair2.Volunteer.Async.UpdateEventTask;
 import com.stair2.Volunteer.DatabaseData.Club;
 import com.stair2.Volunteer.DatabaseData.Endorsement;
 import com.stair2.Volunteer.DatabaseData.Event;
@@ -42,7 +44,6 @@ public class CreateEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-        setTitle("Create Event");
 
         eventid = getIntent().getIntExtra("eventId", 0);
 
@@ -55,22 +56,28 @@ public class CreateEventActivity extends AppCompatActivity {
             ((EditText)findViewById(R.id.createEvent_Description)).setText(e.description);
             ((EditText)findViewById(R.id.createEvent_Location)).setText(e.location);
             ((EditText)findViewById(R.id.createEvent_StartTime)).setText(e.parseTime());
+            ((EditText)findViewById(R.id.createEvent_StartTime)).setTag(e.time);
             ((EditText)findViewById(R.id.createEvent_Date)).setText(e.parseDate());
-            ((EditText)findViewById(R.id.createEvent_Length)).setText(e.length);
+            ((EditText)findViewById(R.id.createEvent_Date)).setTag(e.date);
+            ((EditText)findViewById(R.id.createEvent_Length)).setText(Integer.toString(e.length));
 
             ((Button)findViewById(R.id.createEvent_actionButton)).setText("Update");
 
             setTitle("Edit Event");
+            //hide chips because we dont want people to change the sponsor
+            findViewById(R.id.createEvent_ChipsLayout).setVisibility(View.INVISIBLE);
+
         }
         else
         {
             //put into create mode
-
+            setTitle("Create Event");
+            ArrayList<Club> clubs = filterOwnerOnly(AppState.state.clubs, AppState.LoggedInUser.userId);
+            createChips(clubs);
+            listedChips = clubs;
         }
 
-        ArrayList<Club> clubs = filterOwnerOnly(AppState.state.clubs, AppState.LoggedInUser.userId);
-        createChips(clubs);
-        listedChips = clubs;
+
     }
 
     /**
@@ -117,12 +124,6 @@ public class CreateEventActivity extends AppCompatActivity {
             Chip nChp = (Chip)this.getLayoutInflater().inflate(R.layout.event_chip, null, false);
             nChp.setText(club.clubName);
             nChp.setTag(club.clubId);
-            nChp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //chipClick(v);
-                }
-            });
 
             root.addView(nChp);
 
@@ -200,6 +201,14 @@ public class CreateEventActivity extends AppCompatActivity {
 
     public void actionClick(View view)
     {
+        if(eventid == 0)
+            createEventAction(view);
+        else
+            updateEventAction(view);
+    }
+
+    public void createEventAction(View view)
+    {
         String title = ((EditText)findViewById(R.id.createEvent_Title)).getText().toString();
         String desc = ((EditText)findViewById(R.id.createEvent_Description)).getText().toString();
         String loc = ((EditText)findViewById(R.id.createEvent_Location)).getText().toString();
@@ -258,6 +267,66 @@ public class CreateEventActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(this,"Enter a title no more than 30 characters!", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void updateEventAction(View view)
+    {
+        String title = ((EditText)findViewById(R.id.createEvent_Title)).getText().toString();
+        String desc = ((EditText)findViewById(R.id.createEvent_Description)).getText().toString();
+        String loc = ((EditText)findViewById(R.id.createEvent_Location)).getText().toString();
+
+        if(title.length() <= 30 && title.length() > 0)
+        {
+            if(desc.length() <= 250 && desc.length() > 0)
+            {
+                if(loc.length() <= 45 && loc.length() > 0)
+                {
+                    if(findViewById(R.id.createEvent_Date).getTag() != null)
+                    {
+                        java.sql.Date date = (java.sql.Date)findViewById(R.id.createEvent_Date).getTag();
+
+                        if(findViewById(R.id.createEvent_StartTime).getTag() != null)
+                        {
+                            Time time = (Time)findViewById(R.id.createEvent_StartTime).getTag();
+
+                            if(((EditText)findViewById(R.id.createEvent_Length)).getText().length() > 0)
+                            {
+                                int length = Integer.parseInt(((EditText)findViewById(R.id.createEvent_Length)).getText().toString());
+
+                                Event currentEvent = AppState.state.getEventFromId(eventid);
+
+                                Event updatedEvent = new Event(currentEvent.eventId, AppState.LoggedInUser.userId, title, desc, loc, date, time, length);
+
+                                UpdateEventTask task = new UpdateEventTask();
+                                task.execute(updatedEvent);
+
+                                AppState.state.events.remove(currentEvent);
+                                AppState.state.events.add(updatedEvent);
+
+                                Intent back = new Intent(this, EventActivity.class);
+                                startActivity(back);
+                                finish();
+                            }
+                            else
+                                Toast.makeText(this, "Please enter the event length!", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                            Toast.makeText(this,"Please select a time!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(this,"Please select a date!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(this,"Enter a location no more than 40 characters!", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(this,"Enter a description no more than 250 characters!", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this,"Enter a title no more than 30 characters!", Toast.LENGTH_SHORT).show();
+
+
 
     }
 }

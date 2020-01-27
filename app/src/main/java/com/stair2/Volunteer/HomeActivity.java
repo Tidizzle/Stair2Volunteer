@@ -61,7 +61,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void feedClick(View view)
     {
-
+        Intent feed = new Intent(this, FeedActivity.class);
+        startActivity(feed);
     }
 
     public void eventsClick(View view)

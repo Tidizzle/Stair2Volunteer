@@ -7,7 +7,7 @@ import java.util.Date;
  * Object to hold pertinent event information
  * @author Zach Taylor
  */
-public class Event
+public class Event implements Comparable<Event>
 {
     public int eventId;
     public int ownerId;
@@ -53,5 +53,16 @@ public class Event
         else
             return hour + ":" + minute + "am";
 
+    }
+
+    @Override
+    public int compareTo(Event o) {
+
+        if(date.before(o.date))
+            return -1;
+        else if (date.equals(o.date))
+            return 0;
+        else
+            return 1;
     }
 }

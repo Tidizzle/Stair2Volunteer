@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class EventActivity extends AppCompatActivity {
@@ -69,6 +70,11 @@ public class EventActivity extends AppCompatActivity {
                 upcoming.add(e);
 
         }
+
+        Collections.sort(upcoming);
+        Collections.sort(passed, Collections.<Event>reverseOrder());
+
+
 
         GenUpcomingCards(upcoming);
         GenPassedCards(passed);
@@ -347,7 +353,11 @@ public class EventActivity extends AppCompatActivity {
     public void manageOnClick(View view)
     {
         int eventId = (int)view.getTag();
-        Toast.makeText(this, Integer.toString(eventId), Toast.LENGTH_LONG).show();
+
+        Intent detailI = new Intent(this, EventDetailActivity.class);
+        detailI.putExtra("eventId", eventId);
+        detailI.putExtra("detailType", EventDetailActivity.TYPE_MANAGE);
+        startActivity(detailI);
 
     }
 
