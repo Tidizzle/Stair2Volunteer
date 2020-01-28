@@ -71,7 +71,9 @@ public class ClubDetailActivity extends AppCompatActivity {
 
     public void showSponsored(View view)
     {
-        //todo: send to sponsored feed when implemented
+        Intent filteredFeed = new Intent(this, FeedActivity.class);
+        filteredFeed.putExtra("clubFilter", clubId);
+        startActivity(filteredFeed);
     }
 
     //alert the user and then move along with the leave
@@ -87,6 +89,8 @@ public class ClubDetailActivity extends AppCompatActivity {
                 Membership target = new Membership(AppState.LoggedInUser.userId, clubId);
                 LeaveClubTask t = new LeaveClubTask();
                 t.execute(target);
+
+                AppState.state.memberships.remove(target);
 
                 moveBack();
             }

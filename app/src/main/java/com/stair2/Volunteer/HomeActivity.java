@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,6 +35,10 @@ public class HomeActivity extends AppCompatActivity {
 
         ((TextView)findViewById(R.id.home_CompleteEventsText)).setText(AppState.completesignups + "  Completed");
         ((TextView)findViewById(R.id.home_UpcomingEventsText)).setText(AppState.incompletesignups + "  Upcoming");
+        ((TextView)findViewById(R.id.home_JoinedClubsText)).setText(AppState.joinedclubs + "  Joined Clubs");
+        ((TextView)findViewById(R.id.home_OwnedClubText)).setText(AppState.ownedclubs + "  Owned Clubs");
+
+        ((Button)findViewById(R.id.home_userLabel)).setText("      " + AppState.LoggedInUser.firstName + " " + AppState.LoggedInUser.lastName);
 
     }
 

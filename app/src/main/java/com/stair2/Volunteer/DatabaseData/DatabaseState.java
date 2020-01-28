@@ -71,6 +71,36 @@ public class DatabaseState
         return count;
     }
 
+    public int getJoinedClubCount(int userId)
+    {
+        int count = 0;
+
+        for(int i = 0;i < memberships.size(); i++)
+        {
+            Membership m = memberships.get(i);
+
+            if(m.userId == userId && getClubFromId(m.clubId).ownerId != userId)
+                count +=1;
+        }
+
+        return count;
+    }
+
+    public int getOwnedClubCount(int userId)
+    {
+        int count = 0;
+
+        for(int i = 0; i < clubs.size(); i++)
+        {
+            Club c = clubs.get(i);
+
+            if(c.ownerId == userId)
+                count += 1;
+        }
+
+        return count;
+    }
+
     /**
      * Get the club object by the clubId
      * @param clubId ClubId of object

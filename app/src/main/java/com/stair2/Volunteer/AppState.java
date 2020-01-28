@@ -19,6 +19,8 @@ public class AppState implements AsyncDatabaseStateResponse
     public static User LoggedInUser;
     public static int completesignups = 0;
     public static int incompletesignups = 0;
+    public static int joinedclubs = 0;
+    public static int ownedclubs = 0;
 
     private static final int GUID_LENGTH = 6; //length of guids to generate
 
@@ -28,6 +30,8 @@ public class AppState implements AsyncDatabaseStateResponse
     {
         completesignups = state.getCompleteSignups(LoggedInUser.userId);
         incompletesignups = state.getIncompleteSignups(LoggedInUser.userId);
+        joinedclubs = state.getJoinedClubCount(LoggedInUser.userId);
+        ownedclubs = state.getOwnedClubCount(LoggedInUser.userId);
     }
 
 
