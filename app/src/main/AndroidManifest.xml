@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FeedActivity"></activity>
+        <activity android:name=".HoursProgressActivity"></activity>
+        <activity android:name=".FeedActivity" />
         <activity android:name=".EventSignupsActivity" />
         <activity android:name=".EventDetailActivity" />
         <activity android:name=".CreateEventActivity" />

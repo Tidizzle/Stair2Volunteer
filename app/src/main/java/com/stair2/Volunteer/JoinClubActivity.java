@@ -1,9 +1,11 @@
 package com.stair2.Volunteer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,6 +15,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -153,5 +156,52 @@ public class JoinClubActivity extends AppCompatActivity {
         startActivity(back);
         finish();
 
+    }
+
+    public void joinClub(int input)
+    {
+        int clubId = input;
+
+        Membership newMembership = new Membership(AppState.LoggedInUser.userId, clubId);
+        JoinClubTask task = new JoinClubTask();
+
+        Toast.makeText(this, "Joining Club...", Toast.LENGTH_LONG).show();
+        task.execute(newMembership);
+
+        Intent back = new Intent(this, ClubActivity.class);
+        startActivity(back);
+        finish();
+
+    }
+
+    public void clubCodeClick(View v)
+    {
+        String rawCode = ((EditText)findViewById(R.id.joinClub_CodeBox)).getText().toString();
+        int clubCode = 0;
+
+        try {
+            clubCode = Integer.parseInt(rawCode);
+        } catch(Exception e) {
+            Toast.makeText(this,"Enter a valid club code!", Toast.LENGTH_LONG).show();
+        }
+
+        final Club requested = AppState.state.getClubFromId(clubCode);
+
+        if(requested != null)
+        {
+            new AlertDialog.Builder(this)
+                    .setTitle("Confirm")
+                    .setMessage("Are you sure you want to join " + requested.clubName + "?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            joinClub(requested.clubId);
+                        }
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        }
+        else
+            Toast.makeText(this, "Club not found!", Toast.LENGTH_LONG).show();
     }
 }

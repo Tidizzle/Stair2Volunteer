@@ -1,10 +1,12 @@
 package com.stair2.Volunteer;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -95,6 +97,36 @@ public class HomeActivity extends AppCompatActivity {
     public void viewAllSignups(View view)
     {
 
+    }
+
+    public void yourHoursClick(View view)
+    {
+        Intent hoursprogress = new Intent(this, HoursProgressActivity.class);
+        startActivity(hoursprogress);
+    }
+
+    public void logoutClick(View view)
+    {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logout();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+
+    }
+
+    private void logout()
+    {
+        Intent logout = new Intent(this, LoginActivity.class);
+        logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(logout);
     }
 
 }

@@ -39,6 +39,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.clubDetail_ClubTitle)).setText(requestedClub.clubName);
         ((TextView)findViewById(R.id.clubDetail_Description)).setText(requestedClub.clubDesc);
         ((TextView)findViewById(R.id.clubDetail_ReqHours)).setText("Required Hours: " + Integer.toString(requestedClub.requiredHours));
+        ((TextView)findViewById(R.id.clubDetail_ClubCode)).setText("Club Code: " + Integer.toString(requestedClub.clubId));
 
         if(requestedClub.websiteUrl == null)
             ((TextView)findViewById(R.id.clubDetail_Website)).setText("No Website listed");

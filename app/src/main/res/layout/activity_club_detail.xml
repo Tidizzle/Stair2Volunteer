@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="280dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="5dp"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:text="Shannons Test Club"
+                android:text="Title"
                 android:textSize="20sp" />
 
             <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -46,13 +46,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
                 android:layout_marginLeft="5dp"
-                android:text="TextView" />
+                android:text="Description" />
 
             <TextView
                 android:id="@+id/clubDetail_ReqHours"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="TextView" />
+                android:text="Required Hours: " />
+
+            <TextView
+                android:id="@+id/clubDetail_ClubCode"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Club Code: " />
 
             <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
@@ -70,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:text="TextView" />
+                android:text="Website" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

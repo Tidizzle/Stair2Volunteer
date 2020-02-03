@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncUserRespons
 
             Intent openHome = new Intent(this, HomeActivity.class); //create the intent to open home
             startActivity(openHome); //open home activity
-
+            finish(); //close this so we cant go back to it without logging out
 
         }
         else

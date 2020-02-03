@@ -109,18 +109,6 @@ public class CreateEventActivity extends AppCompatActivity {
         {
             Club club = clubs.get(i);
 
-            /*Chip nChp = new Chip(this, null, R.style.Widget_MaterialComponents_Chip_Choice);
-            LayoutParams lp = new LayoutParams(
-                    LayoutParams.WRAP_CONTENT,
-                    130
-            );
-            nChp.setLayoutParams(lp);
-
-            nChp.setText(club.clubName);
-            nChp.setShapeAppearanceModel(nChp.getShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 45).build());
-            nChp.setCheckable(true);
-            nChp.setCheckedIcon(getResources().getDrawable(R.drawable.ic_check_icon));*/
-
             Chip nChp = (Chip)this.getLayoutInflater().inflate(R.layout.event_chip, null, false);
             nChp.setText(club.clubName);
             nChp.setTag(club.clubId);
