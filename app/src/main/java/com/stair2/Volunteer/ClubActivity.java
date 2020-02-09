@@ -301,6 +301,7 @@ public class ClubActivity extends AppCompatActivity {
         Intent clubDetailIntent = new Intent(this, ClubDetailActivity.class);
         clubDetailIntent.putExtra("clubId", clubId);
         startActivity(clubDetailIntent);
+        finish();
     }
 
     //click of the owned clubs "manage"
@@ -312,18 +313,21 @@ public class ClubActivity extends AppCompatActivity {
         clubDetailIntent.putExtra("clubId", clubId);
         clubDetailIntent.putExtra("detailType", 1); //open detail as manage
         startActivity(clubDetailIntent);
+        finish();
     }
 
     public void joinClubs(View view)
     {
         Intent joinClubActivity = new Intent(this, JoinClubActivity.class);
         startActivity(joinClubActivity);
+        finish();
     }
 
     public void createClub(View view)
     {
         Intent createClubActivity = new Intent(this, CreateClubActivity.class);
         startActivity(createClubActivity);
+        finish();
     }
 
     public void refresh(View view)
@@ -334,5 +338,11 @@ public class ClubActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent club = new Intent(this, ClubActivity.class);
+        startActivity(club);
+    }
 
 }

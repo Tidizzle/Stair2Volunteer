@@ -96,7 +96,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void viewAllSignups(View view)
     {
-
+        Intent signupsIntent = new Intent(this, ViewSignUpActivity.class);
+        startActivity(signupsIntent);
     }
 
     public void yourHoursClick(View view)
@@ -128,5 +129,6 @@ public class HomeActivity extends AppCompatActivity {
         logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(logout);
     }
+
 
 }

@@ -103,7 +103,8 @@ public class ClubDetailActivity extends AppCompatActivity {
     //move back to the clubactivity class and delete this from the application stack
     public void moveBack()
     {
-
+        Intent club = new Intent(this, ClubActivity.class);
+        startActivity(club);
         finish();
     }
 
@@ -122,6 +123,7 @@ public class ClubDetailActivity extends AppCompatActivity {
         Intent editdetails = new Intent(this, CreateClubActivity.class);
         editdetails.putExtra("clubId", clubId);
         startActivity(editdetails);
+        finish();
     }
 
     //delete the club with a prompt
@@ -148,6 +150,16 @@ public class ClubDetailActivity extends AppCompatActivity {
         DeleteClubTask t = new DeleteClubTask();
         t.execute(target);
 
+        finish();
+        Intent club = new Intent(this, ClubActivity.class);
+        startActivity(club);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent back = new Intent(this, ClubActivity.class);
+        startActivity(back);
         finish();
     }
 }

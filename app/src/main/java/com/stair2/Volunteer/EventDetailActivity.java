@@ -9,14 +9,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.stair2.Volunteer.Async.CreateSignupTask;
 import com.stair2.Volunteer.Async.DeleteEventTask;
 import com.stair2.Volunteer.DatabaseData.Club;
 import com.stair2.Volunteer.DatabaseData.Event;
+import com.stair2.Volunteer.DatabaseData.Signup;
 
 public class EventDetailActivity extends AppCompatActivity {
 
     public static final int TYPE_MANAGE = 1;
-    public static final int TYPE_VIEW = 0;
+    public static final int TYPE_SIGNEDUP = 0;
+    public static final int TYPE_NOTSIGNEDUP = 2;
 
     public int eventId;
 
@@ -29,6 +32,7 @@ public class EventDetailActivity extends AppCompatActivity {
         Event requestedEvent = AppState.state.getEventFromId(eventId);
 
         int detailType = getIntent().getIntExtra("detailType", 0);
+
 
         ((TextView)findViewById(R.id.eventDetail_Title)).setText(requestedEvent.title);
         ((TextView)findViewById(R.id.eventDetail_Description)).setText(requestedEvent.description);
@@ -48,18 +52,29 @@ public class EventDetailActivity extends AppCompatActivity {
 
 
 
-        ((TextView)findViewById(R.id.eventDetail_DateTime)).setText(requestedEvent.parseDate() + ", " + requestedEvent.parseTime());
+        ((TextView)findViewById(R.id.eventDetail_DateTime)).setText(requestedEvent.parseDate() + ", " + requestedEvent.parseTime() +", " + Integer.toString(requestedEvent.length) + " hours");
 
 
-        if(detailType == 1)
+        if(detailType == TYPE_MANAGE)
         {
             findViewById(R.id.eventDetail_Leave).setVisibility(View.GONE);
+            findViewById(R.id.eventDetail_CreateSignup).setVisibility(View.GONE);
+
         }
-        else
+        else if(detailType == TYPE_SIGNEDUP)
         {
             findViewById(R.id.eventDetail_EditEvent).setVisibility(View.GONE);
             findViewById(R.id.eventDetail_DeleteEvent).setVisibility(View.GONE);
+            findViewById(R.id.eventDetail_CreateSignup).setVisibility(View.GONE);
 
+
+        }
+        else if (detailType == TYPE_NOTSIGNEDUP)
+        {
+
+            findViewById(R.id.eventDetail_Leave).setVisibility(View.GONE);
+            findViewById(R.id.eventDetail_EditEvent).setVisibility(View.GONE);
+            findViewById(R.id.eventDetail_DeleteEvent).setVisibility(View.GONE);
         }
 
     }
@@ -110,5 +125,21 @@ public class EventDetailActivity extends AppCompatActivity {
         Intent i = new Intent(this, EventActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void createSignUp(View view)
+    {
+        Signup s = new Signup(AppState.LoggedInUser.userId, eventId, 1, AppState.state.getEventFromId(eventId).length);
+
+        CreateSignupTask task = new CreateSignupTask();
+        task.execute(s);
+
+        AppState.state.signups.add(s);
+
+        Intent i = new Intent(this, EventDetailActivity.class);
+        i.putExtra("eventId", eventId);
+        i.putExtra("detailType", EventDetailActivity.TYPE_SIGNEDUP);
+        finish();
+        startActivity(i);
     }
 }

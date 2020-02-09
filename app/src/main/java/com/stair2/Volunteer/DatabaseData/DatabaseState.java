@@ -324,4 +324,19 @@ public class DatabaseState
         return retList;
     }
 
+    public ArrayList<Signup> getSignupsFromUserId(int userId)
+    {
+        ArrayList<Signup> retlist = new ArrayList<>();
+
+        for(int i = 0; i < signups.size(); i++)
+        {
+            Signup s = signups.get(i);
+
+            if(s.userId == userId)
+                retlist.add(s);
+        }
+
+        return retlist;
+    }
+
 }

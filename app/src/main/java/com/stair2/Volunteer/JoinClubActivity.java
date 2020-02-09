@@ -147,10 +147,13 @@ public class JoinClubActivity extends AppCompatActivity {
         int clubId = (int)v.getTag();
 
         Membership newMembership = new Membership(AppState.LoggedInUser.userId, clubId);
-        JoinClubTask task = new JoinClubTask();
+        AppState.state.memberships.add(newMembership);
 
-        Toast.makeText(this, "Joining Club...", Toast.LENGTH_LONG).show();
+
+        JoinClubTask task = new JoinClubTask();
         task.execute(newMembership);
+
+        Toast.makeText(this, "Joining Club...", Toast.LENGTH_SHORT).show();
 
         Intent back = new Intent(this, ClubActivity.class);
         startActivity(back);
@@ -163,10 +166,12 @@ public class JoinClubActivity extends AppCompatActivity {
         int clubId = input;
 
         Membership newMembership = new Membership(AppState.LoggedInUser.userId, clubId);
-        JoinClubTask task = new JoinClubTask();
+        AppState.state.memberships.add(newMembership);
 
-        Toast.makeText(this, "Joining Club...", Toast.LENGTH_LONG).show();
+        JoinClubTask task = new JoinClubTask();
         task.execute(newMembership);
+
+        Toast.makeText(this, "Joining Club...", Toast.LENGTH_SHORT).show();
 
         Intent back = new Intent(this, ClubActivity.class);
         startActivity(back);

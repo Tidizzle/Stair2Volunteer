@@ -19,6 +19,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.stair2.Volunteer.DatabaseData.Club;
 import com.stair2.Volunteer.DatabaseData.Event;
+import com.stair2.Volunteer.DatabaseData.Signup;
 
 import org.w3c.dom.Text;
 
@@ -48,7 +49,20 @@ public class FeedActivity extends AppCompatActivity {
         else
             eventList = AppState.state.events;
 
-        createEventCards(eventList);
+
+        ArrayList<Event> finalEventList = new ArrayList<>();
+
+        for(int i = 0; i < eventList.size(); i++)
+        {
+            Event e = eventList.get(i);
+            Signup s = new Signup(AppState.LoggedInUser.userId, e.eventId, 1, e.length);
+
+            if(!AppState.state.signups.contains(s))
+                finalEventList.add(e);
+        }
+
+
+        createEventCards(finalEventList);
 
     }
 
@@ -297,6 +311,7 @@ public class FeedActivity extends AppCompatActivity {
 
         Intent eventDetail = new Intent(this, EventDetailActivity.class);
         eventDetail.putExtra("eventId", eventId);
+        eventDetail.putExtra("detailType", EventDetailActivity.TYPE_NOTSIGNEDUP);
         startActivity(eventDetail);
     }
 

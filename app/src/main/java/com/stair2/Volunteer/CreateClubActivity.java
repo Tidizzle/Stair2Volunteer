@@ -17,6 +17,9 @@ import com.stair2.Volunteer.DatabaseData.Membership;
 
 public class CreateClubActivity extends AppCompatActivity {
 
+    boolean iscreating = true;
+    int clubId = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +32,10 @@ public class CreateClubActivity extends AppCompatActivity {
 
         if(getIntent().getIntExtra("clubId", 0) != 0)
         {
-            Club target = AppState.state.getClubFromId(getIntent().getIntExtra("clubId", 0));
+            iscreating = false;
+            clubId = getIntent().getIntExtra("clubId", 0);
+            Club target = AppState.state.getClubFromId(clubId);
+
 
             ((EditText)findViewById(R.id.createClub_Name)).setText(target.clubName);
             ((EditText)findViewById(R.id.createClub_Desc)).setText(target.clubDesc);
@@ -129,8 +135,8 @@ public class CreateClubActivity extends AppCompatActivity {
                             ownerid = Integer.parseInt(owneridstring);
 
                         Club nClub = new Club(AppState.genNewGUID(), ownerid, clubName, clubDesc, website, hours);
-                        AppState.state.clubs.add(nClub);
 
+                        AppState.state.clubs.add(nClub);
                         AppState.state.memberships.add(new Membership(nClub.clubId, nClub.ownerId));
 
                         CreateClubTask task = new CreateClubTask();
@@ -158,5 +164,23 @@ public class CreateClubActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(iscreating){
+            Intent back = new Intent(this, ClubActivity.class);
+            startActivity(back);
+            finish();
+        }
+        else
+        {
+            Intent back = new Intent(this, ClubDetailActivity.class);
+            back.putExtra("clubId", clubId);
+            back.putExtra("detailType", 1);
+            startActivity(back);
+            finish();
+        }
     }
 }

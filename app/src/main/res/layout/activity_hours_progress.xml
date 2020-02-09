@@ -13,9 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:id="@+id/hoursProgress_Container">
 
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginBottom="10dp"
@@ -36,7 +37,7 @@
                     android:layout_height="25dp"
                     android:paddingLeft="10dp"
                     android:text="Austins Test Club"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -65,7 +66,7 @@
                         />
 
                     <TextView
-                        
+
                         android:layout_width="110dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="5dp"
@@ -79,7 +80,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
     </LinearLayout>
 
 </ScrollView>

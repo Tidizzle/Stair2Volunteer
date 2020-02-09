@@ -1,5 +1,7 @@
 package com.stair2.Volunteer.DatabaseData;
 
+import androidx.annotation.Nullable;
+
 /**
  * Signup contains relational information connecting an event and a user together
  * @author Zach Taylor
@@ -21,5 +23,16 @@ public class Signup
             confirmation = true;
         else
             confirmation = false;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+
+        Signup other = (Signup)obj;
+
+        if(other.userId == userId && other.eventId == eventId)
+            return true;
+
+        return false;
     }
 }

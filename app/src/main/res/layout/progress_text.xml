@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="110dp"
+    android:layout_height="50dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:text="13/50 hr"
+    android:gravity="end|center"
+    android:layout_gravity="center_vertical"
+    android:textSize="25sp">
+
+</TextView>
