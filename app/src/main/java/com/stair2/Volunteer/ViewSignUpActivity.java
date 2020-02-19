@@ -345,7 +345,7 @@ public class ViewSignUpActivity extends AppCompatActivity {
         detailI.putExtra("eventId", eventId);
         detailI.putExtra("detailType", EventDetailActivity.TYPE_SIGNEDUP);
         startActivity(detailI);
-
+        finish();
     }
 
     @Override

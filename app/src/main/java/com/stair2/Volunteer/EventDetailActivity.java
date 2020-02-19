@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.stair2.Volunteer.Async.CreateSignupTask;
 import com.stair2.Volunteer.Async.DeleteEventTask;
+import com.stair2.Volunteer.Async.DeleteSignupTask;
 import com.stair2.Volunteer.DatabaseData.Club;
 import com.stair2.Volunteer.DatabaseData.Event;
 import com.stair2.Volunteer.DatabaseData.Signup;
@@ -22,6 +23,7 @@ public class EventDetailActivity extends AppCompatActivity {
     public static final int TYPE_NOTSIGNEDUP = 2;
 
     public int eventId;
+    public int detailType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class EventDetailActivity extends AppCompatActivity {
         eventId = getIntent().getIntExtra("eventId", 0);
         Event requestedEvent = AppState.state.getEventFromId(eventId);
 
-        int detailType = getIntent().getIntExtra("detailType", 0);
+        detailType = getIntent().getIntExtra("detailType", 0);
 
 
         ((TextView)findViewById(R.id.eventDetail_Title)).setText(requestedEvent.title);
@@ -88,7 +90,31 @@ public class EventDetailActivity extends AppCompatActivity {
 
     public void leaveEvent(View view)
     {
-        //delete your signup
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setTitle("Confirm");
+        b.setMessage("Are you sure you want to leave this event?");
+        b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //clicked yes
+                contLeave();
+            }
+        });
+        b.setNegativeButton("No", null);
+        b.show();
+    }
+
+    public void contLeave()
+    {
+        Signup s = AppState.state.getSignupFromIds(AppState.LoggedInUser.userId, eventId);
+        DeleteSignupTask task = new DeleteSignupTask();
+        task.execute(s);
+
+        AppState.state.signups.remove(s);
+
+        Intent i = new Intent(this, ViewSignUpActivity.class);
+        startActivity(i);
+        finish();
     }
 
     public void editEvent(View view)
@@ -141,5 +167,27 @@ public class EventDetailActivity extends AppCompatActivity {
         i.putExtra("detailType", EventDetailActivity.TYPE_SIGNEDUP);
         finish();
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(detailType == TYPE_MANAGE)
+        {
+            Intent b = new Intent(this, EventActivity.class);
+            startActivity(b);
+        }
+        else if (detailType == TYPE_SIGNEDUP)
+        {
+            Intent b = new Intent(this, ViewSignUpActivity.class);
+            startActivity(b);
+        }
+        else if (detailType == TYPE_NOTSIGNEDUP)
+        {
+            Intent b = new Intent(this, FeedActivity.class);
+            startActivity(b);
+        }
+
+        finish();
     }
 }

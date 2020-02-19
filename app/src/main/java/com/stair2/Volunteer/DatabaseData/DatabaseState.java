@@ -339,4 +339,17 @@ public class DatabaseState
         return retlist;
     }
 
+    public Signup getSignupFromIds(int userId, int eventId)
+    {
+        for(int i = 0; i < signups.size(); i++)
+        {
+            Signup s = signups.get(i);
+
+            if(s.userId == userId && s.eventId == eventId)
+                return s;
+        }
+
+        return null;
+    }
+
 }

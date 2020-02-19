@@ -341,7 +341,7 @@ public class ClubActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent club = new Intent(this, ClubActivity.class);
+        Intent club = new Intent(this, HomeActivity.class);
         startActivity(club);
     }
 
